@@ -6,18 +6,18 @@ namespace Function
 {
     public class FunctionHandler
     {
-        public void Handle(string input) {
+        public string Handle(string input) {
 
             var key = getSecret("api-key");
 
             var headerAuth = System.Environment.GetEnvironmentVariable("Http_Authorization");
 
             if(headerAuth == null || headerAuth != "Bearer " + key) {
-                Console.WriteLine("unauthorized");
+                Console.Error.WriteLine("unauthorized");
                 Environment.Exit(1);
             }
 
-            Console.WriteLine("Authorized.. OK");
+            return "Authorized.. OK";
         }
 
         private string getSecret(string file) {
